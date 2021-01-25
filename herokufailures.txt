@@ -4,3 +4,4 @@ ipython-genutils
 numpy
 pandas
 scikit-learn
+scipy
