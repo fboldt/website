@@ -34,6 +34,6 @@ scipy
 six==1.15.0
 threadpoolctl==2.1.0
 tornado==6.1
-traitlets==5.0.5
+traitlets
 wcwidth==0.2.5
 Werkzeug==1.0.1
