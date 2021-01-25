@@ -2,3 +2,4 @@ ipykernel
 ipython
 ipython-genutils
 numpy
+pandas
