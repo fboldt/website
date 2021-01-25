@@ -1,11 +1,7 @@
 import os
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
-from generate_image import california_housing
-import numpy
-import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
+from makeclustersfile import makeclustersfile
 
 UPLOAD_FOLDER = 'datasets/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv'}
@@ -33,7 +29,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('heatmap', name=filename))
+            return redirect(url_for('clusters', filename=filename))
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -44,15 +40,9 @@ def upload_file():
     </form>
     '''
 
-@app.route("/heatmap/<name>")
-def heatmap(name):
-    california_housing(name)
-    figfile = BytesIO()
-    plt.savefig(figfile, format='png')
-    figfile.seek(0)
-    figdata_png = base64.b64encode(figfile.getvalue())
-    result = str(figdata_png)[2:-1]
-    return render_template('heatmap.html', result=result)
+@app.route("/clusters/<filename>")
+def clusters(filename):
+    return makeclustersfile(UPLOAD_FOLDER + "/" + filename)
 
 @app.route("/hello")
 def hello_world():
