@@ -1,3 +1,4 @@
 ipykernel
 ipython
 ipython-genutils
+numpy
