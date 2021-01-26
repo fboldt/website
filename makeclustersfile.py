@@ -7,7 +7,7 @@ def makeclustersfile(filename):
     df = pd.read_csv(filename)
     latlng = df[['metadata.lat','metadata.lng']]
     X = latlng.to_numpy()
-    kmeans = KMeans()
+    kmeans = KMeans(100)
     y_pred = kmeans.fit_predict(X)
     _, counts = np.unique(y_pred, return_counts=True)
     df = pd.DataFrame(kmeans.cluster_centers_, columns=['longitude','latitude'])
