@@ -10,10 +10,10 @@ def makeclustersfile(filename):
     if len(X) > numclusters:
         kmeans = KMeans(numclusters)
         y_pred = kmeans.fit_predict(X)
-        _, counts = np.unique(y_pred, return_counts=True)
-        df = pd.DataFrame(kmeans.cluster_centers_, columns=['lng','lat'])
+        _, count = np.unique(y_pred, return_counts=True)
+        df = pd.DataFrame(kmeans.cluster_centers_, columns=['lat','lng'])
     else:
-        df = pd.DataFrame(X, columns=['lng','lat'])
-        counts = np.ones(len(latlng))
-    df['counts'] = counts
+        df = pd.DataFrame(X, columns=['lat','lng'])
+        count = np.ones(len(latlng))
+    df['count'] = count
     return df.to_json(orient='records')
