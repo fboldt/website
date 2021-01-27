@@ -38,6 +38,8 @@ def upload_file():
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
+    <br>
+    <a href='static/csvspage.html'>Lista de arquivos segmentados</a>
     '''
 
 @app.route("/clusters/<filename>")
